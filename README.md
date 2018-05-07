@@ -5,7 +5,7 @@ Self-Driving Car Engineer Nanodegree Program
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).
 
 ### Goals
-In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
+In this project our goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. We are provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
 
 #### The map of the highway is in data/highway_map.txt
 Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
@@ -135,6 +135,26 @@ that's just a guess.
 One last note here: regardless of the IDE used, every submitted project must
 still be compilable with cmake and make./
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+## Rubic points
+### compilation
+The code main.cpp was compiled without errors with cmake and make.
+
+### Valid Trajectories
+The car is able to drive at least 4.32 miles without accidents and collisions according to the speed limit. During the driving, the maximum acceleration and jerk was not exceeded. The car stays in the middle lane, except when it changes lanes to pass the car in front of it when it is safe to do so. The car is able to change lanes and keeps its speed close to the speed limit 50 miles/hour.
+![car](images/image1.png)
+
+### Reflection
+The path generating algorithm is based on the project work through in the class website. The code added is from line 265 to 423. 
+
+The car starts in the middle lane with small starting speed. The algorithm will first esimtae the position of the other cars to see whether it is safe to follow in the same lane, whether it is safe to change to the left lane and whether it is safe to pass in the right lane based on the relative positions of the cars.  
+
+Then it builds the state transition of the state machines to decide whether to increase speed or reduce speed or change lanes to the right or to the left. 
+
+The trajectory was fitted by a spline in the car coordinate with two points from previous trajectory, and the three points at the far distance with 30 meters apart. 
+
+
+
+
+
+
 
